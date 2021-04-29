@@ -71,18 +71,18 @@ class scrapy:
         # Position of string of keyword
         keyword_group = []
 
-        # Combin url
+        # Combine url
         if place != None:
-            combin_urls = self.googlemaps_url + '/' + keyword + '/' + '@' + place + '/' + self.star
+            combine_urls = self.googlemaps_url + '/' + keyword + '/' + '@' + place + '/' + self.star
         else:
-            combin_urls = self.googlemaps_url + '/' + keyword
+            combine_urls = self.googlemaps_url + '/' + keyword
         
         # Get response from google maps
         user_agent = self.ua.random
 
         headers = {'user-agent': user_agent}
 
-        web_response = requests.get(combin_urls, headers=headers)
+        web_response = requests.get(combine_urls, headers=headers)
 
         # Wait for random time
 
@@ -128,9 +128,8 @@ class scrapy:
         # Record position of search
         record_pos = []
 
-        counter = 0
-
         # find '篇評論'
+        counter = 0
         for result_idx in raw_data:
             if '篇評論' in result_idx:
                 record_pos.append(counter)
@@ -187,7 +186,6 @@ class scrapy:
             return []
 
          # Find parking by address
-        Parking = []
         for restaurant_item in restaurant:
             address = restaurant_item.address
             parking_info = self.find_parking(address)

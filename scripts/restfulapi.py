@@ -40,7 +40,7 @@ def find_restaurant():
     keyword = content.get('restaurant')
     location = content.get('location')
 
-    return_data = {"Header":"header"}
+    return_data = {"Header":"header", "Search_result":"fail"}
     search_word = keyword + '+' + location
 
     restaurant_parking = None
@@ -49,7 +49,12 @@ def find_restaurant():
     else:
         restaurant_parking = scr.find_restaurant(search_word)
 
-    return_data["result"] = items_convert_to_json(restaurant_parking)
+    if len(restaurant_parking) > 0 and restaurant_parking is not None:
+        return_data["Search_result"] = "success"
+        return_data["Result"] = items_convert_to_json(restaurant_parking)
+    else:
+        return_data["Search_result"] = "fail"
+        return_data["Result"] = "None"
 
     return return_data
 
