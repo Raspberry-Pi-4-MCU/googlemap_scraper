@@ -61,10 +61,14 @@ class scrapy:
         else:
             self.mutex_lock = True
 
-        # position of string of script
+        # Check keyword is effective
+        if len(keyword) <= 0:
+            return []
+
+        # Position of string of script
         script_keyword_group = []
 
-        # position of string of keyword
+        # Position of string of keyword
         keyword_group = []
 
         # Combin url
