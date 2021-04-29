@@ -21,12 +21,12 @@
      - URL: http://127.0.0.1:5000/find_restaurant
      - Method: POST
      - Header: Content-Type: application/json
-  - example:
+  - Example:
     ```bash
-      curl --header "Content-Type: application/json"   \
-      --request POST \
-      --data '{"restaurant":"宵夜", "location":"土城", "parking":"True"}' \
-      http://127.0.0.1:5000/find_restaurant
+    curl --header "Content-Type: application/json"   \
+    --request POST \
+    --data '{"restaurant":"宵夜", "location":"土城", "parking":"True"}' \
+    http://127.0.0.1:5000/find_restaurant
     ```
  
  
