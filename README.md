@@ -8,6 +8,7 @@
 
 ## Dependance:
   - docker
+  - docker-compose
   
 ## Using:
   - Server
