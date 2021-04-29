@@ -1,0 +1,9 @@
+version: '2.1'
+services:
+  scrapy:
+    build: .
+    ports:
+      - "5000:5000"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4

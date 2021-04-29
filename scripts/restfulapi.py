@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from flask import Flask, request
 import scrapy_google_maps
 import json
@@ -48,13 +49,9 @@ def find_restaurant():
     else:
         restaurant_parking = scr.find_restaurant(search_word)
 
-    # return_data["result"] = restaurant_parking
-
     return_data["result"] = items_convert_to_json(restaurant_parking)
 
     return return_data
-
-    # return "Hello"
 
 if __name__ == "__main__":
     scr = scrapy_google_maps.scrapy()

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import requests
 import re
 from bs4 import BeautifulSoup
@@ -181,8 +182,8 @@ class scrapy:
         if restaurant == []:
             return []
 
+         # Find parking by address
         Parking = []
-        # Find parking by address
         for restaurant_item in restaurant:
             address = restaurant_item.address
             parking_info = self.find_parking(address)
@@ -190,26 +191,9 @@ class scrapy:
 
         return restaurant
             
-        
-
-
-# https://www.google.com.tw/maps/search/桃園+燒肉/@24.9911045,121.2313636,13z/data=!4m4!2m3!5m1!4e8!6e5
-
-#r = requests.get("https://www.google.com.tw/maps/search/%E6%A1%83%E5%9C%92+%E6%9E%9C%E6%B1%81/@24.9911045,121.2313636,13z")
-
-#print(r.text)
 
 if __name__ == "__main__":
     scr = scrapy()
-    # scr.get_raw('330桃園市桃園區中華路8號+find parking')
     restaurant = scr.find_restaurant('桃園+田季發爺')
     for restaurant_item in restaurant:
         print(restaurant_item.name)
-
-    # scr.find_parking('330桃園市桃園區大興路136號')
-    '''
-    restaurant_parking = scr.find_restaurant_and_self_parking('桃園+田季發爺+')
-    for restaurant in restaurant_parking:
-        for parking in restaurant.parking:
-            print(parking.name, parking.address)
-    '''
