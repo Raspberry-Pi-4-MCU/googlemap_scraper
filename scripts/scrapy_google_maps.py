@@ -12,6 +12,7 @@ class items:
         self.address = ""
         self.comment_number = 0
         self.website = ""
+        self.map_website = ""
         self.name = ""
         self.parking = []
 
@@ -161,6 +162,7 @@ class scrapy:
             new_items.name = raw_data[name_pos].split(',')[1].replace('\\"',"")
             new_items.star = raw_data[record_pos_idx+1].split(',')[3]
             new_items.comment_number = raw_data[record_pos_idx+1].split(',')[4]
+            new_items.map_website = "https://www.google.com/maps/search/" + new_items.name + "+" + new_items.address
             items_array.append(new_items)
 
         # return result
@@ -168,10 +170,18 @@ class scrapy:
         
     def find_parking(self, address):
         get_raw_result = self.get_raw(address + '+find parking')
+        
         if get_raw_result == None:
             return []
-        else:
-            return get_raw_result
+
+        ripple_result = []
+
+        # Ripple
+        for get_raw_result_item in get_raw_result:
+            if  '停車' in get_raw_result_item.name:
+                ripple_result.append(get_raw_result_item)
+
+        return ripple_result
 
     def find_restaurant(self, keyword):
         get_raw_result = self.get_raw(keyword)
@@ -196,6 +206,7 @@ class scrapy:
 
 if __name__ == "__main__":
     scr = scrapy()
-    restaurant = scr.find_restaurant('桃園+田季發爺')
-    for restaurant_item in restaurant:
-        print(restaurant_item.name)
+    restaurant_park = scr.find_restaurant_and_self_parking('桃園+田季發爺')
+    for restaurant_park_item in restaurant_park:
+        for parking in restaurant_park_item.parking:
+            print(parking.name)

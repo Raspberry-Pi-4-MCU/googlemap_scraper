@@ -17,6 +17,7 @@ def items_convert_to_json(items_body):
         items_json["comment_number"] = items_item.comment_number
         items_json["name"] = items_item.name
         items_json["website"] = items_item.website
+        items_json["map_website"] = items_item.map_website
 
         # Exapnd parking
         if len(items_item.parking) > 0:
@@ -28,6 +29,7 @@ def items_convert_to_json(items_body):
                 items_parking["comment_number"] = parking_item.comment_number
                 items_parking["name"] = parking_item.name
                 items_parking["website"] = parking_item.website
+                items_parking["map_website"] = parking_item.map_website
                 items_json["parking"].append(items_parking)
 
         items_array.append(items_json)
